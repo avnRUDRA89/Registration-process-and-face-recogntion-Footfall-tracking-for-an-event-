@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .container {
+            text-align: center; /* Center align content */
+            margin-top: 20px; 
+        }
+        .video-container {
+            margin-top: 20px; 
+            width: 80%; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .video-frame {
+            border: 2px solid black; 
+            width: 100%; /* Ensure video frame fills container */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Face Recognition</h1>
+        <button onclick="startRecognition()" class="btn">Start Recognition</button>
+        <button onclick="stopRecognition()" class="btn btn-secondary">Stop Recognition</button>
+        <a href="{{ url_for('visitor_data') }}" class="btn">Visitor Data</a>
+    </div>
+
+    <div class="video-container">
+        <img id="video-frame" class="video-frame" src="{{ url_for('video_feed') }}" alt="Video Feed">
+    </div>
+
+    <script>
+        var recognitionStarted = false;
+
+        function startRecognition() {
+            if (!recognitionStarted) {
+                recognitionStarted = true;
+                fetch('{{ url_for('start_recognition') }}')
+                    .then(response => {
+                        console.log('Recognition started');
+                    })
+                    .catch(error => {
+                        console.error('Error starting recognition:', error);
+                    });
+            }
+        }
+
+        function stopRecognition() {
+            fetch('{{ url_for('stop_recognition') }}')
+                .then(response => {
+                    recognitionStarted = false;
+                    console.log('Recognition stopped');
+                })
+                .catch(error => {
+                    console.error('Error stopping recognition:', error);
+                });
+        }
+    </script>
+</body>
+</html>

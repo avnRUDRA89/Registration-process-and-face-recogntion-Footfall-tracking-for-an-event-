@@ -1,0 +1,47 @@
+<!-- qr.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generated</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .qr-code {
+            margin: 20px auto;
+            max-width: 80%;
+            display: block;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .button-container a {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button-container a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>QR Code Generated</h2>
+    <p>Scan the QR code below:</p>
+    <img class="qr-code" src="{{ url_for('view_qr', filename=qr_file) }}" alt="QR Code">
+    <div class="button-container">
+        <a href="{{ url_for('view_qr', filename=qr_file) }}" target="_blank">View QR Code</a>
+        <a href="{{ url_for('download_qr', filename=qr_file) }}" download>Download QR Code</a>
+    </div>
+</body>
+</html>

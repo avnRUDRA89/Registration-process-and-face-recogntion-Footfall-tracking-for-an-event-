@@ -1,0 +1,7 @@
+Flask
+opencv-python
+face_recognition
+qrcode
+pyzbar
+numpy
+Pillow
