@@ -38,5 +38,5 @@ A complete end-to-end system for event registration, QR code generation, real-ti
 
 ---
 
-## 🗂️ Project Structure
+
 
